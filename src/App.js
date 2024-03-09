@@ -1,10 +1,11 @@
-import { Form } from "./Form";
+import { Forms } from "./Form";
+import { Container } from "./Container";
 
 function App() {
   return (
-    <div>
-      <Form/>
-    </div>
+    <Container>
+      <Forms/>
+    </Container>
   );
 }
 
