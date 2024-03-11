@@ -2,6 +2,7 @@ import { Forms } from "./Form";
 import { Container } from "./Container";
 import { useState } from "react";
 import { currencys } from "./currencys";
+import { Clock } from "./Clock";
 
 
 function App() {
@@ -20,7 +21,7 @@ function App() {
 
   return (
     <Container>
-      <Forms result={result} calculateResult={calculateResult} />
+     <Forms clock={<Clock/>} result={result} calculateResult={calculateResult} />
     </Container>
   );
 }

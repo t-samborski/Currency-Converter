@@ -3,7 +3,7 @@ import { currencys } from "../currencys";
 import { Result } from "./Result";
 import { useState } from "react";
 
-export const Forms = ({result, calculateResult}) => {
+export const Forms = ({clock, result, calculateResult}) => {
     
     const [amount, setAmount] = useState("");
     const [currency, setCurrency] = useState(currencys[0].short);
@@ -15,6 +15,7 @@ export const Forms = ({result, calculateResult}) => {
     return (
 
     <Form onSubmit={onFormSubmit}>
+        {clock}
         <Header>
             Przelicznik walut
         </Header>
