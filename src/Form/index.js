@@ -1,13 +1,29 @@
 import { Header, Form, Label, Title, Area, Button, Footer } from "./styled"
-import { currencys } from "../currencys";
 import { Result } from "./Result";
 import { useState } from "react";
+import { Clock} from "../Clock"
+import { useRatesData } from "../useRatesData";
 
-export const Forms = ({clock, result, calculateResult}) => {
-    
+
+export const Forms = () => {
+
+    const [result, setResult] = useState();
+    const ratesData = useRatesData();
+        
     const [amount, setAmount] = useState("");
-    const [currency, setCurrency] = useState(currencys[0].short);
-         
+    const [currency, setCurrency] = useState("EUR");
+
+    const calculateResult = (amount, currency) => {
+    const rate = ratesData.rates[currency].value;
+       
+      
+      setResult({
+        targetAmount: +amount,
+        results: amount * rate,
+        currency,
+        });
+    }
+    
     const onFormSubmit = (event) => {
         event.preventDefault();
         calculateResult(amount, currency);
@@ -15,7 +31,7 @@ export const Forms = ({clock, result, calculateResult}) => {
     return (
 
     <Form onSubmit={onFormSubmit}>
-        {clock}
+        <Clock/>
         <Header>
             Przelicznik walut
         </Header>
@@ -35,16 +51,16 @@ export const Forms = ({clock, result, calculateResult}) => {
                 value={currency}
                 onChange={({ target }) => setCurrency(target.value)}
             >
-                {currencys.map(currencys =>
+                {!!ratesData.rates && Object.keys(ratesData.rates).map(currency =>
                     <option
-                        key={currencys.short}
-                        value={currencys.short}
-                    >{currencys.name}</option>)
+                        key={currency}
+                        value={currency}
+                    >{currency}</option>)
                 }
             </Area>
         </Label>
         <Button>Przelicz</Button>
-        <Footer>Kursy pochodzą ze strony nbp.pl z Tabeli nr 115/A/NBP/2024 z dnia 2024-03-09</Footer>
+        <Footer>Kursy pochodzą ze strony nbp.pl z Tabeli nr 115/A/NBP/2024 z dnia <strong></strong></Footer>
         <Result result={result} />
     </Form>
 

@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-
 export const Form = styled.form`
 background-color: white;
 width: 650px;
@@ -52,5 +51,4 @@ text-align: center;
 padding: 10px;
 color: grey;
 font-family: 'Courier New', Courier, monospace;
-
 `
