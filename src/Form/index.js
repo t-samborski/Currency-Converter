@@ -2,14 +2,12 @@ import { Header, Form, Label, Title, Area, Button, Footer } from "./styled"
 import { Result } from "./Result";
 import { useState } from "react";
 import { Clock} from "../Clock"
-import { useRatesData } from "../useRatesData";
 
-
-export const Forms = () => {
+export const Forms = ({ratesData}) => {
 
     const [result, setResult] = useState();
-    const ratesData = useRatesData();
-        
+    // const ratesData = useRatesData();
+    
     const [amount, setAmount] = useState("");
     const [currency, setCurrency] = useState("EUR");
 
@@ -29,7 +27,7 @@ export const Forms = () => {
         calculateResult(amount, currency);
     }    
     return (
-
+        
     <Form onSubmit={onFormSubmit}>
         <Clock/>
         <Header>
@@ -60,7 +58,7 @@ export const Forms = () => {
             </Area>
         </Label>
         <Button>Przelicz</Button>
-        <Footer>Kursy pochodzą ze strony nbp.pl z Tabeli nr 115/A/NBP/2024 z dnia <strong></strong></Footer>
+        <Footer>Kursy pochodzą ze strony nbp.pl z Tabeli nr 115/A/NBP/2024 z dnia <strong>{ratesData.date}</strong></Footer>
         <Result result={result} />
     </Form>
 
