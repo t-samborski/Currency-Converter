@@ -5,16 +5,14 @@ import { Clock} from "../Clock"
 
 export const Forms = ({ratesData}) => {
 
-    const [result, setResult] = useState();
-    // const ratesData = useRatesData();
-    
+    const [result, setResult] = useState();  
     const [amount, setAmount] = useState("");
     const [currency, setCurrency] = useState("EUR");
+    const date = new Date (ratesData.date);
 
     const calculateResult = (amount, currency) => {
     const rate = ratesData.rates[currency].value;
-       
-      
+   
       setResult({
         targetAmount: +amount,
         results: amount * rate,
@@ -58,7 +56,7 @@ export const Forms = ({ratesData}) => {
             </Area>
         </Label>
         <Button>Przelicz</Button>
-        <Footer>Kursy pochodzą ze strony nbp.pl z Tabeli nr 115/A/NBP/2024 z dnia <strong>{ratesData.date}</strong></Footer>
+        <Footer>Kursy pochodzą ze strony nbp.pl z Tabeli nr 115/A/NBP/2024 z dnia <strong>{date.toLocaleDateString()}</strong></Footer>
         <Result result={result} />
     </Form>
 
